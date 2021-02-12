@@ -28,7 +28,7 @@ class Entry(models.Model):
     # Possui uma chave-estrangeira, referenciando o conteúdo dessa tabela com Topic
     topic = models.ForeignKey(Topic, on_delete=models.DO_NOTHING)
     # Atributo do tipo TextField, que não precisa de limite de tamanho
-    text = models.TextField(default="Nada aqui por enquanto...")
+    text = models.TextField(default="")
     # Atributo que adiciona etiqueta de tempo ao registro
     date_added = models.DateTimeField(auto_now_add=True)
 
@@ -42,4 +42,7 @@ class Entry(models.Model):
     # string e com reticiências para deixar clara que foi cortado um trecho
     def __str__(self):
        """Devolve uma representação em string do modelo."""
-       return self.text[:50] + "..."
+       if len(self.text)>50 :
+           return self.text[:50] + "..."
+       else:
+           return self.text
