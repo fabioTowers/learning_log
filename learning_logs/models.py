@@ -26,9 +26,9 @@ class Topic(models.Model):
 class Entry(models.Model):
     """Algo específico aprendido sobre um assunto."""
     # Possui uma chave-estrangeira, referenciando o conteúdo dessa tabela com Topic
-    topic = models.ForeignKey(Topic)
+    topic = models.ForeignKey(Topic, on_delete=models.DO_NOTHING)
     # Atributo do tipo TextField, que não precisa de limite de tamanho
-    text = models.TextField
+    text = models.TextField(default="Nada aqui por enquanto...")
     # Atributo que adiciona etiqueta de tempo ao registro
     date_added = models.DateTimeField(auto_now_add=True)
 
