@@ -18,6 +18,6 @@ class Topic(models.Model):
     # atributo default para exibir informações sobre um assunto
     # Método __str__() define uma representação simples de um modelo
     # Nesse caso devolve uma string armazenada em text
-    def__str__(self):
+    def __str__(self):
         """Devolve uma representação em string do modelo."""
         return self.text
