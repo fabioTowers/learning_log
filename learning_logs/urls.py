@@ -6,8 +6,10 @@ from django.conf.urls import url
 # Importar as views que estão no mesmo diretório
 from . import views
 
+app_name = 'learning_logs'
+
 # Variável que lista as páginas que podem
 urlpatterns = [
     # Página Inicial
-    path('', views.index, name='index'),
+    url('', views.index, name='index'),
 ]
