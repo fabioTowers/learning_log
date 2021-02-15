@@ -7,7 +7,14 @@
     <title>Learning Logs</title>
 </head>
 <body>
-    <h2>Bem vindo ao Learning Logs!</h2>
-    <p>Learning Logs te ajuda a manter uma trilha de aprendizagem, para qualquer tópico que você esteja aprendendo.</p>
+    <!--Todo template filho de ter a tag extends apontando 
+    para o template pai-->
+    {% extends "learning_logs/base.html" %}
+
+    <!--Tudo que não é herdado de um template pai fica 
+    dentro de um bloco content-->
+    {% block content %}
+
+    {% endblock content %}
 </body>
 </html>

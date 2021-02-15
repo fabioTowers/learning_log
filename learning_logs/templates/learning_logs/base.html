@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--ESSE ARQUIVO É UM TEMPLATE
+    entre {% %} temos uma tag de template que gera uma porção de código para exibir 
+informações em uma página, no caso temos uma que gera um link para a página inicial,
+seguindo o mapeamento de URL definido para index.
+Essa URL pattern foi definido em learning_logs/urls.py como index e 'learning_logs é 
+o seu namespace'
+A vantagem é que caso um link mude eles estão centralizados em learning_logs/urls.py e 
+não em páginas html separadas-->
+    <a href="{% url 'learning_logs:index' %}"><h2>Learning Log</h2></a>
+    {% block content %}{% endblock content %}
+</body>
+</html>
