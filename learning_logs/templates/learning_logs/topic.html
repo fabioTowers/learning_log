@@ -1,0 +1,24 @@
+{% extends 'learning_logs/base.html' %}
+{% block titulo %}{{ topic }}{% endblock titulo %}
+
+{% block content %}
+    <p>Tópico: {{ topic }}</p>
+    <p>Entradas:</p>
+    <ul>
+        {% for entry in entries %}
+            <li>
+                <!--No Django, o pipe significa uma um filtro de template:
+                uma função que modifica o valor da variável do template, isso 
+            é usado abaixo para determinar o formato que o timestamp vai aparecer e
+            o filtro linebreaks garante que será usada uma quebra de linha que seja 
+            compatível com as usadas em navegadores-->
+                <p>{{ entry.date_added | date:'M d, Y H:i' }}</p>
+                <p>{{ entry.text | linebreaks }}</p>
+            </li>
+            {% empty %}
+            <li>
+                Ainda não há nada aqui...
+            </li>
+            {% endfor %}
+    </ul>
+{% endblock content %}
