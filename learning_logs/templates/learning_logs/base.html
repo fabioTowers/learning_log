@@ -15,7 +15,10 @@ Essa URL pattern foi definido em learning_logs/urls.py como index e 'learning_lo
 o seu namespace'
 A vantagem é que caso um link mude eles estão centralizados em learning_logs/urls.py e 
 não em páginas html separadas-->
-    <a href="{% url 'learning_logs:index' %}"><h2>Learning Log</h2></a>
+    <p>
+    <a href="{% url 'learning_logs:index' %}"><h2>Learning Log</h2></a> -
+    <a href="{% url 'learning_logs:topics' %}"><h2>Tópicos</h2></a>
+    </p>
     {% block content %}{% endblock content %}
 </body>
 </html>
