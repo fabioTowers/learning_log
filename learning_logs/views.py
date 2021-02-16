@@ -26,3 +26,22 @@ def topics(request):
     # Passamos ao método render() o request, o caminho do 
     #template, e os dados a serem exibidos (context)
     return render(request, 'learning_logs/topics.html', context)
+
+#O segundo parâmetro é o valor recebido no mapeamento de URL's com o assunto
+# que será renderizado na página
+def topic(request, topic_id):
+    """Mostra um único assunto e todas as suas entradas."""
+    
+    #Obtendo o assunto do banco de dados (registro onde o id corresponde)
+    topic = Topic.objects.get(id=topic_id)
+
+    # recuperamos as entradas associadas ao assunto ordenados de acordo com a 
+    #data que foram adicionados. O menos indica para ordenar na ordem inversa
+    #isso faz com que as entradas mais recentes sejam exibidas antes.
+    entries = topic.entry_set.order_by('-date_added')
+
+    # Os dados recuperados são associados ao dicionário context
+    context = {'topic': topic, 'entries': entries}
+
+    # O dicionários é enviado ao template topic.html
+    return render(request, 'learning_logs/topic.html', context)
