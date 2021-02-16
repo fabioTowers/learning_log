@@ -11,8 +11,8 @@ app_name = 'learning_logs'
 # Variável que lista as páginas que podem
 urlpatterns = [
     # Página Inicial
-    url('', views.index, name='index'),
+    url(r'^$', views.index, name='index'),
 
     # Mostra todos os assuntos
-    url('topics', views.topics, name='topics'),
+    url(r'^topics/$', views.topics, name='topics'),
 ]

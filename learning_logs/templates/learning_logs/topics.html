@@ -1,17 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tópicos</title>
-</head>
-<body>
-    {% extends "learning_logs/base.html" %}
-
+{% extends "learning_logs/base.html" %}
+{% block titulo %}Tópicos{% endblock titulo %}
     {% block content %}
-        <p>Topics</p>
-
+        <p>Tópicos:</p>
         <ul>
     <!--Tag que equivale ao laço for, percorre as linhas de 
     context. Varre cada topico (topic) na lista de 
@@ -28,5 +18,3 @@ houver nada na variável-->
             {% endfor %}
         </ul>
     {% endblock content %}
-</body>
-</html>

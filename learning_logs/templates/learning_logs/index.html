@@ -1,20 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Learning Logs</title>
-</head>
-<body>
+    
     <!--Todo template filho de ter a tag extends apontando 
-    para o template pai-->
+    para o template pai, a partir dessa tag é rederizado todo
+    o conteúdo do tamplate pai-->
     {% extends "learning_logs/base.html" %}
-
-    <!--Tudo que não é herdado de um template pai fica 
-    dentro de um bloco content-->
-    {% block content %}
-        <p>Learning Logs te ajuda a manter uma trilha de aprendizagem, para qualquer tópico que você esteja aprendendo.</p>
-    {% endblock content %}
-</body>
-</html>
+    {% block titulo %}Home{% endblock titulo %}
+        <!--Tudo que não é herdado de um template pai fica 
+        dentro de um bloco content-->
+        {% block content %}
+            <h1>Seja bem-vindo ao Learning Logs!</h1>
+            <p>Learning Logs te ajuda a manter uma trilha de aprendizagem, para qualquer tópico que você esteja aprendendo.</p>
+        {% endblock content %}
