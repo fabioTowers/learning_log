@@ -12,7 +12,9 @@ duplas.
 Há ainda a tag empty para dizer ao django o que fazer se não 
 houver nada na variável-->
             {% for topic in topics %}
-                <li>{{ topic }}</li>
+                <li>
+                    <a href="{% url 'learning_logs:topic' topic.id %}">{{ topic }}</a>
+                </li>
             {% empty %}
                 <li>Ainda não foi adicionado nenhum tópico...</li>
             {% endfor %}
