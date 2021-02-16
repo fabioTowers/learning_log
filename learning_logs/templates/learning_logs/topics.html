@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tópicos</title>
+</head>
+<body>
+    {% extends "learning_logs/base.html" %}
+
+    {% block content %}
+        <p>Topics</p>
+
+        <ul>
+    <!--Tag que equivale ao laço for, percorre as linhas de 
+    context. Varre cada topico (topic) na lista de 
+tópicos (topics). Note que há uma tag para indicar o fim 
+do laço.
+Para exibir o conteúdo de uma variável coloque-a entre chaves
+duplas.
+Há ainda a tag empty para dizer ao django o que fazer se não 
+houver nada na variável-->
+            {% for topic in topics %}
+                <li>{{ topic }}</li>
+            {% empty %}
+                <li>Ainda não foi adicionado nenhum tópico...</li>
+            {% endfor %}
+        </ul>
+    {% endblock content %}
+</body>
+</html>
