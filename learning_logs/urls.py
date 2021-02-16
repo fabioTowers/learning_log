@@ -12,4 +12,7 @@ app_name = 'learning_logs'
 urlpatterns = [
     # Página Inicial
     url('', views.index, name='index'),
+
+    # Mostra todos os assuntos
+    url('topics', views.topics, name='topics'),
 ]
