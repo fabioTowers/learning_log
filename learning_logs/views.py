@@ -9,7 +9,8 @@ from django.http import HttpResponseRedirect
 
 # A função reverse() determina o URL a partir de um padrão de URL
 #nomeado. O django vai gerar um URL quando a págin for solicitada
-from django.core.urlresolvers import reverse
+#from django.core.urlresolvers import reverse
+from django.urls import reverse
 
 # Importando TopicForm, que é o formulário criado em forms.py
 from .forms import TopicForm
@@ -75,8 +76,8 @@ def new_topic(request):
         if form.is_valid():
             # save() salva os dados do formulário no banco de dados
             form.save()
-            return
-# Redireciona o usuário para a página de tópicos
-HttpResponseRedirect(reverse('learning_logs:topics'))
-   context = {'form': form}
-   return render(request, 'learning_logs/new_topic.html', context)
+            # Redireciona o usuário para a página de tópicos
+            return HttpResponseRedirect(reverse('learning_logs:topics'))
+
+    context = {'form': form}
+    return render(request, 'learning_logs/new_topic.html', context)
