@@ -19,4 +19,8 @@ houver nada na variável-->
                 <li>Ainda não foi adicionado nenhum tópico...</li>
             {% endfor %}
         </ul>
+
+        <hr>
+        <!--Link para a página de inserção de novo tópico-->
+        <a href="{% url 'learning_logs:new_topic' %}">Adicionar um novo tópico</a>
     {% endblock content %}
