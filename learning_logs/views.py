@@ -3,6 +3,17 @@ from django.shortcuts import render
 # Importando o modelo de dados necessário
 from .models import Topic
 
+# Essa classe vai redirecionar o leitor de volta a página topics
+#após ele ter submentido um assunto
+from django.http import HttpResponseRedirect
+
+# A função reverse() determina o URL a partir de um padrão de URL
+#nomeado. O django vai gerar um URL quando a págin for solicitada
+from django.core.urlresolvers import reverse
+
+# Importando TopicForm, que é o formulário criado em forms.py
+from .forms import TopicForm
+
 # Create your views here.
 #Em urls.py definimos a view index, que está definida abaixo
 # o request será passado a essa função, que por sua vez chama a 
@@ -45,3 +56,27 @@ def topic(request, topic_id):
 
     # O dicionários é enviado ao template topic.html
     return render(request, 'learning_logs/topic.html', context)
+
+# Tratamento da requisição ao solicitar a inserção de um novo assunto
+def new_topic(request):
+    """Adiciona um novo assunto."""
+    if request.method != 'POST':
+        # Nenhum dados submetido: cria um formulario em branco
+        form = TopicForm()
+    else:
+        # Dados do POST submetidos: processa esses dados
+        #os dados que o usuário colocou no formulário estão em request.POST
+        form = TopicForm(request.POST)
+        # is_valid() verifica se as informações são válidas e se todos os 
+        #campos obrigatórios foram preenchidos (por padrão, todos são
+        #obrigatórios), verifica se os tipos de dados correspondentes foram
+        #colocados em cada campo, foi especificado também (em models.py) que
+        #o tamanho máximo é 200 caracteres, essa função também verifica isso
+        if form.is_valid():
+            # save() salva os dados do formulário no banco de dados
+            form.save()
+            return
+# Redireciona o usuário para a página de tópicos
+HttpResponseRedirect(reverse('learning_logs:topics'))
+   context = {'form': form}
+   return render(request, 'learning_logs/new_topic.html', context)
