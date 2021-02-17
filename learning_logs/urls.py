@@ -24,4 +24,8 @@ urlpatterns = [
     #Quando um endereço de requisição corresponde so padrão, será chamada a função de view topic()
     #com o argumento topic_id
     url(r'^topics/(?P<topic_id>\d+)/$', views.topic, name='topic'),
+
+    # Padrão de URL para página de novos tópicos (assuntos)
+    #a solicitação de view será enviada para a função new_topic
+    url(r'^new_topic/$', views.new_topic, name='new_topic'),
 ]
