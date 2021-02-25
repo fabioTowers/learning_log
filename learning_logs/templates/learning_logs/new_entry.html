@@ -1,0 +1,17 @@
+{% extends "learning_logs/base.html" %}
+    <!--Título da página-->
+    {% block titulo %}Adicionar em {{ topic }}{% endblock titulo %}
+
+    {%block content %}
+        <!--Mostra a qual assunto se está adicionando a nova entrada,
+        tembém é um link para redirecionar para esse assunto-->
+        <p><a href="{% url 'learning_logs:topic' topic.id %}">{{ topic }}</a></p>
+
+        <p>Adicionar nova entrada:</p>
+        <!--Em action temos o id do tópico, para ao enviar, associar ao tópico correto-->
+        <form action="{% url 'learning_logs:new_entry' topic.id %}" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Adicionar Entrada</button>
+        </form>
+    {% endblock content %}
