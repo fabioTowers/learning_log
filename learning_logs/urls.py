@@ -34,5 +34,5 @@ urlpatterns = [
     #novamente adicionamos um valor numérico na variável topic_id
     #quando uma URL com esse padrão for requisitada, Django enviará a requisição
     #e o ID do assunto para a função de view new_entry()
-    url(r'^new_entry/(?P<topic_id>\d+)/$', views.new_entry), name='new_entry'),
+    url(r'^new_entry/(?P<topic_id>\d+)/$', views.new_entry, name='new_entry'),
 ]

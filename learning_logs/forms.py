@@ -22,7 +22,7 @@ class EntryForm(forms.ModelForm):
     # Classe Meta aninhada que lista o modelo no qual ela está baseada
     #e o campo a ser incluído no formulário
     class Meta:
-        model = EntryForm
+        model = Entry
         fields = ['text']
         # Rótulo vazio para text
         labels = {'text': ''}
