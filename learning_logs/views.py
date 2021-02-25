@@ -12,8 +12,8 @@ from django.http import HttpResponseRedirect
 #from django.core.urlresolvers import reverse
 from django.urls import reverse
 
-# Importando TopicForm, que é o formulário criado em forms.py
-from .forms import TopicForm
+# Importando TopicForm e EntryForm, que são os formulários criados em forms.py
+from .forms import TopicForm, EntryForm
 
 # Create your views here.
 #Em urls.py definimos a view index, que está definida abaixo
@@ -81,3 +81,30 @@ def new_topic(request):
 
     context = {'form': form}
     return render(request, 'learning_logs/new_topic.html', context)
+
+def new_entry(request, topic_id):
+    """Acrescenta uma nova entrada para um assunto em particular."""
+    topic = Topic.objects.get(id=topic_id)
+
+    if request.method != 'POST':
+        # Nenhum dado submetido; cria um formulário em branco
+        form = EntryForm()
+    else:
+        # Dados de POST submetidos; processa os dados
+        form = EntryForm(data=request.POST)
+        # Verifica se o formulário foi corretamente preenchido
+        if form.is_valid():
+            # Criar um novo objeto nem_entry sem salvar no banco por enquanto
+            new_entry = form.save(commit=False)
+            # Definindo o atributo topic
+            new_entry.topic = topic
+            # Efetivamente salva no banco de dados com o assunto correto associado
+            new_entry.save()
+            # Redirecionar o usuário para a página do assunto
+            #A função reverse exige dois argumentos:
+            # - Nome do padrão de URL para o qual queremos gerar um URL;
+            # - Uma lista de argumentos contendo qualquer argumento que deva ser incluída na URL
+            return HttpResponseRedirect(reverse('learning_logs:topic', args=[topic_id]))
+
+    context = {'topic': topic, 'form': form}
+    return render(request, 'learning_logs/new_entry.html', context)
