@@ -4,6 +4,10 @@
 {% block content %}
     <p>Tópico: {{ topic }}</p>
     <p>Entradas:</p>
+    <p>
+        <!--Link que redireciona para a página de adicionar um novo tópico-->
+        <a href="{% url 'learning_logs:new_entry' topic.id %}">Adicionar novo tópico</a>
+    </p>
     <ul>
         {% for entry in entries %}
             <li>
