@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
-# Importando o modelo de dados necessário
-from .models import Topic
+# Importando os modelos de dados necessário
+from .models import Topic, Entry
 
 # Essa classe vai redirecionar o leitor de volta a página topics
 #após ele ter submentido um assunto
@@ -108,3 +108,26 @@ def new_entry(request, topic_id):
 
     context = {'topic': topic, 'form': form}
     return render(request, 'learning_logs/new_entry.html', context)
+
+# Recebe as requisições da página de edição de uma entrada
+def edit_entry(request, entry_id):
+    """Edita uma nova entrada existente."""
+    # Pega o objeto da entrada que o usuário quer editar e o assunto associado
+    entry = Entry.objects.get(id=entry_id)
+    topic = entry.topic
+
+    if request.method != 'POST':
+        #Requisição inicial; preenche previamente o formulário com a entrada atual
+        # criada uma instância de EntryForm com o argumento instance
+        # dessa forma, quando o usuário solocitar editar uma entrada ele vai ver a 
+        #caixa de texto preenchida com seu valor atual
+        form = EntryForm(instance=entry)
+    else:
+        # Dados de POST submetidos; processa os dados
+        form = EntryForm(instance=entry, data=request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('learning_logs:topic', args=[topics.id]))
+
+    context = {'entry': entry, 'topic': topic, 'form': form}
+    return render(request, 'learning_logs/edit_entry.html', context)
