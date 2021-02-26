@@ -35,4 +35,9 @@ urlpatterns = [
     #quando uma URL com esse padrão for requisitada, Django enviará a requisição
     #e o ID do assunto para a função de view new_entry()
     url(r'^new_entry/(?P<topic_id>\d+)/$', views.new_entry, name='new_entry'),
+
+    # URL pattern para a página de edição de entradas
+    #a URL passa na requisição um id de assunto que é armazenado em entry_id
+    #requisições com esse formato são enviadas para a função de view edit_entry()
+    url(r'^edit_entry/(?<entry_id>\d+)/$', views.edit_entry, name='edit_entry'),
 ]
