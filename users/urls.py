@@ -12,4 +12,7 @@ app_name = 'users'
 urlpatterns = [
     # Página de login
     url(r'^login/$', LoginView.as_view(template_name='users/login.html'), name='login'),
+    # Página de logout:
+    #Esse padrão de URL envia a requisição para logout_view()
+    url(r'^logout/$', views.logout_view, name='logout'),
 ]
