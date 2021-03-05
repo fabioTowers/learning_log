@@ -1,7 +1,11 @@
 from django.shortcuts import render
 
 from django.http import HttpResponseRedirect
-from django.core.urlresolvers import reverse
+
+# A função reverse() determina o URL a partir de um padrão de URL
+#nomeado. O django vai gerar um URL quando a págin for solicitada
+#from django.core.urlresolvers import reverse
+from django.urls import reverse
 
 # Para importa a função logout()
 from django.contrib.auth import logout

@@ -23,7 +23,7 @@ não em páginas html separadas-->
         a variável user e o método is_authenticated são parte do sistema de login do 
         Django.-->
         {% if user.is_authenticated %}
-            Olá, {{ user.username }}!
+            Olá, {{ user.username }}! - 
             <a href="{% url 'users:logout' %}">Sair</a>
         {% else %}
             <a href="{% url 'users:login' %}">Entrar</a>
