@@ -24,6 +24,7 @@ não em páginas html separadas-->
         Django.-->
         {% if user.is_authenticated %}
             Olá, {{ user.username }}!
+            <a href="{% url 'users:logout' %}">Sair</a>
         {% else %}
             <a href="{% url 'users:login' %}">Entrar</a>
         {% endif %}
