@@ -1,0 +1,21 @@
+{% extends 'learning_logs/base.html' %}
+    {% block titulo %}Login{% endblock titulo %}
+    <!--Essa página extende do template de outra aplicação (learning_logs)-->
+    {% block content %}
+        <!--Caso haja algum erro no formulário, será exibida a mensagem a seguir-->
+        {% if form.errors %}
+            <p>Seu usuário e/ou senha estão incorretos. Por favor, tente novamente.</p>
+        {% endif %}
+
+        <!--Action define que a view de login vai processar o formulário-->
+        <form action="{% url 'users:login' %}" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+
+            <button type="submit">Entrar</button>
+            <!--Este input oculto (chamado next), no atributo value diz ao django 
+            para onde o usuário deve ser redirecionado depois que o login for realizado 
+            com sucesso (página inicial)-->
+            <input type="hidden" name="next" value="{% url 'learning_logs:index' %}"/>
+        </form>
+    {% endblock content %}
