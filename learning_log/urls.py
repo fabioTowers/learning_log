@@ -19,7 +19,10 @@ from django.urls import path, include
 
 # A varíavel urlpatterns: conjuntos de URL's do projeto. Os URL's que podem ser
 #requisitados a partir do site de administração
+#note que há dois namespace's: users e learning_logs, isso é para distinguir o
+#conjunto de URL's pertencentes a cada aplicação
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('users/', include('users.urls', namespace='users')),
     path('', include('learning_logs.urls', namespace='learning_logs')),
 ]
