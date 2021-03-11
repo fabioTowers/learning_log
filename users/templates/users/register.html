@@ -1,0 +1,17 @@
+{% extends 'learning_logs/base.html' %}
+    {% block titulo %}Registrar{% endblock titulo %}
+
+    {% block content %}
+
+        <form action="" method="post">
+            {% csfr_token %}
+            <!--o método as_p() serve para que o django exiba todos os campos do 
+            formulário de forma adequada, incluido mensagens de erro no caso de 
+            preenchimento incorreto-->
+            {{ form.as_p }}
+
+            <button type="submit">Registar</button>
+            <input type="hidden" name="next" value="{% url 'learning_logs:index' %}"/>
+        </form>
+
+    {% endblock content %}
