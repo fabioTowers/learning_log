@@ -53,4 +53,4 @@ def register(request):
             return HttpResponseRedirect(reverse('learning_logs:index'))
     
     context = {'form': form}
-    return render(request, 'user/register.html', context)
+    return render(request, 'users/register.html', context)
