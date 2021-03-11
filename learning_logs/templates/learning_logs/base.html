@@ -26,6 +26,9 @@ não em páginas html separadas-->
             Olá, {{ user.username }}! - 
             <a href="{% url 'users:logout' %}">Sair</a>
         {% else %}
+            <!--Link para o usuário se cadastrar-->
+            <a href="{% url 'users:register' %}">Registre-se</a> - 
+            <!--Link para o usuário logar-->
             <a href="{% url 'users:login' %}">Entrar</a>
         {% endif %}
     </p>
