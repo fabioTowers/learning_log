@@ -15,4 +15,8 @@ urlpatterns = [
     # Página de logout:
     #Esse padrão de URL envia a requisição para logout_view()
     url(r'^logout/$', views.logout_view, name='logout'),
+    #Página de cadastro:
+    #corresponde ao padrão http://localhost:8000/users/register/
+    #envia as requisições para register() na view
+    url(r'^register/$', views.register, name='register'),
 ]
