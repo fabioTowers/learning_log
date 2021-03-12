@@ -48,6 +48,7 @@ def topics(request):
 
 #O segundo parâmetro é o valor recebido no mapeamento de URL's com o assunto
 # que será renderizado na página
+@login_required
 def topic(request, topic_id):
     """Mostra um único assunto e todas as suas entradas."""
     
@@ -66,6 +67,7 @@ def topic(request, topic_id):
     return render(request, 'learning_logs/topic.html', context)
 
 # Tratamento da requisição ao solicitar a inserção de um novo assunto
+@login_required
 def new_topic(request):
     """Adiciona um novo assunto."""
     if request.method != 'POST':
@@ -89,6 +91,7 @@ def new_topic(request):
     context = {'form': form}
     return render(request, 'learning_logs/new_topic.html', context)
 
+@login_required
 def new_entry(request, topic_id):
     """Acrescenta uma nova entrada para um assunto em particular."""
     topic = Topic.objects.get(id=topic_id)
@@ -117,6 +120,7 @@ def new_entry(request, topic_id):
     return render(request, 'learning_logs/new_entry.html', context)
 
 # Recebe as requisições da página de edição de uma entrada
+@login_required
 def edit_entry(request, entry_id):
     """Edita uma nova entrada existente."""
     # Pega o objeto da entrada que o usuário quer editar e o assunto associado
