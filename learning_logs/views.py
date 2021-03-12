@@ -15,6 +15,9 @@ from django.urls import reverse
 # Importando TopicForm e EntryForm, que são os formulários criados em forms.py
 from .forms import TopicForm, EntryForm
 
+# Importando a função login_required()
+from django.contrib.auth.decorators import login_required
+
 # Create your views here.
 #Em urls.py definimos a view index, que está definida abaixo
 # o request será passado a essa função, que por sua vez chama a 
@@ -23,6 +26,10 @@ def index(request):
     """A página inicial de Learning Log"""
     return render(request, 'learning_logs/index.html')
 
+# A anotação @login_required restringe a execução dessa função
+#apenas a usuários logados, com a anotação python sabe que deve
+#executar login_required() antes de topics()
+@login_required
 def topics(request):
     """Mostra todos os assuntos."""
     # Consulta ao banco de dados, solicitando os objetos Topic

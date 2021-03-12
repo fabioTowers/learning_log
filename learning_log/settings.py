@@ -123,3 +123,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# O trecho abaixo indica para onde o usuário deverá ser redirecionado caso tente
+#acessar uma página que exige login (anotação @login_required) e não estiver 
+#logado
+LOGIN_URL = '/users/login/'
