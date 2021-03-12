@@ -1,5 +1,8 @@
 from django.db import models
 
+# importando o modelo de users (usuário)
+from django.contrib.auth.models import User
+
 # Create your models here.
 
 #Aqui ficam as classes
@@ -14,6 +17,9 @@ class Topic(models.Model):
     text = models.CharField(max_length=200)
     # atributo date_added: tipo DateTimeField (data e hora), auto_now_add armazena a hora e data atual
     date_added = models.DateTimeField(auto_now_add=True)
+    # Adicionado um campo que específica o proprietário do tópico, ele é uma chave estrangeira com a 
+    #tabela User
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
 
     # atributo default para exibir informações sobre um assunto
     # Método __str__() define uma representação simples de um modelo
