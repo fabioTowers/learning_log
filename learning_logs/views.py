@@ -132,6 +132,10 @@ def edit_entry(request, entry_id):
     entry = Entry.objects.get(id=entry_id)
     topic = entry.topic
 
+    # Restrição que garante que apenas o usuário proprietário dessa entrada possa editá-la
+    if topic.owner != request.user:
+        raise Http404
+
     if request.method != 'POST':
         #Requisição inicial; preenche previamente o formulário com a entrada atual
         # criada uma instância de EntryForm com o argumento instance
