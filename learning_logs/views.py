@@ -5,7 +5,7 @@ from .models import Topic, Entry
 
 # Essa classe vai redirecionar o leitor de volta a página topics
 #após ele ter submentido um assunto
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, Http404
 
 # A função reverse() determina o URL a partir de um padrão de URL
 #nomeado. O django vai gerar um URL quando a págin for solicitada
@@ -55,6 +55,10 @@ def topic(request, topic_id):
     
     #Obtendo o assunto do banco de dados (registro onde o id corresponde)
     topic = Topic.objects.get(id=topic_id)
+
+    # Garante que o assunto pertence ao usuário atual
+    if topic.owner != request.user:
+        raise Http404
 
     # recuperamos as entradas associadas ao assunto ordenados de acordo com a 
     #data que foram adicionados. O menos indica para ordenar na ordem inversa
