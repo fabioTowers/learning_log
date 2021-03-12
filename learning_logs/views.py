@@ -88,6 +88,11 @@ def new_topic(request):
         #colocados em cada campo, foi especificado também (em models.py) que
         #o tamanho máximo é 200 caracteres, essa função também verifica isso
         if form.is_valid():
+            # Relaciona o usuário atual ao novo tópico adicionado
+            #commit=False, para podermos modificar o novo tópico antes de savá-lo no banco
+            new_topic = form.save(commit=False)
+            # O atributo owner é definido com o ID do usuário atual
+            new_topic.owner = request.user
             # save() salva os dados do formulário no banco de dados
             form.save()
             # Redireciona o usuário para a página de tópicos
@@ -109,6 +114,10 @@ def new_entry(request, topic_id):
         form = EntryForm(data=request.POST)
         # Verifica se o formulário foi corretamente preenchido
         if form.is_valid():
+            # Garante que o assunto pertence ao usuário atual
+            if topic.owner != request.user:
+                raise Http404
+
             # Criar um novo objeto nem_entry sem salvar no banco por enquanto
             new_entry = form.save(commit=False)
             # Definindo o atributo topic
