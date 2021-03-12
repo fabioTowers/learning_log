@@ -35,7 +35,8 @@ def topics(request):
     # Consulta ao banco de dados, solicitando os objetos Topic
     #ordenados pelo atributo 'date_added', o queryset de 
     #resposta é armazenado em topics
-    topics = Topic.objects.order_by('date_added')
+    #filter faz com que sejam retornados apenas assuntos relacionados ao usuário logado
+    topics = Topic.objects.filter(owner=request.user).order_by('date_added')
 
     # Abaixo temos o contexto: as chaves são os nomes que 
     #serão usados no template para acessar, e os valores são 
