@@ -19,6 +19,41 @@ Essa URL pattern foi definido em learning_logs/urls.py como index e 'learning_lo
 o seu namespace'
 A vantagem é que caso um link mude eles estão centralizados em learning_logs/urls.py e 
 não em páginas html separadas-->
+
+    <!--Static navbar-->
+    <nav class="navbar navbar-default navbar-static-top">
+        <div class="container">
+
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"></button>
+                <a class="navbar-brand" href="{% url 'learning_logs:index' %}">Learning Log</a>
+            </div>
+
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="{% url 'learning_logs:topics' %}">Tópicos</a></li>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <!--Se o usuário não estiver logado aparece a opção de logar (que é um link que 
+                    redireciona para a página de login), se estiver aparece a mensagem Olá, fulano!
+                    a variável user e o método is_authenticated são parte do sistema de login do 
+                    Django.-->
+                    {% if user.is_authenticated %}
+                        <li><a>Olá, {{ user.username }}!</a></li>
+                        <li><a href="{% url 'users:logout' %}">Sair</a></li>
+                    {% else %}
+                    <!--Link para o usuário se cadastrar-->
+                        <li><a href="{% url 'users:register' %}">Registre-se</a></li>
+                        <!--Link para o usuário logar-->
+                        <li><a href="{% url 'users:login' %}">Entrar</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+
     <p>
         <a href="{% url 'learning_logs:index' %}">Learning Log</a> -
         <a href="{% url 'learning_logs:topics' %}">Tópicos</a> - 
