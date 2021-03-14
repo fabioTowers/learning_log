@@ -54,23 +54,14 @@ não em páginas html separadas-->
         </div>
     </nav>
 
-    <p>
-        <a href="{% url 'learning_logs:index' %}">Learning Log</a> -
-        <a href="{% url 'learning_logs:topics' %}">Tópicos</a> - 
-        <!--Se o usuário não estiver logado aparece a opção de logar (que é um link que 
-        redireciona para a página de login), se estiver aparece a mensagem Olá, fulano!
-        a variável user e o método is_authenticated são parte do sistema de login do 
-        Django.-->
-        {% if user.is_authenticated %}
-            Olá, {{ user.username }}! - 
-            <a href="{% url 'users:logout' %}">Sair</a>
-        {% else %}
-            <!--Link para o usuário se cadastrar-->
-            <a href="{% url 'users:register' %}">Registre-se</a> - 
-            <!--Link para o usuário logar-->
-            <a href="{% url 'users:login' %}">Entrar</a>
-        {% endif %}
-    </p>
-    {% block content %}{% endblock content %}
+    <div class="container">
+        <div class="page-header">
+            {% block header %}{% endblock header %}
+        </div>
+        <div>
+            {% block content %}{% endblock content %}
+        </div>
+    </div>
+    
 </body>
 </html>
