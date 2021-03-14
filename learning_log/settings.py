@@ -42,6 +42,9 @@ INSTALLED_APPS = [
     # Minhas aplicações
     'learning_logs',
     'users',
+
+    #Aplicações de terceiros
+    'bootstrap3',
 ]
 
 MIDDLEWARE = [
