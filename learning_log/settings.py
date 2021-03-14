@@ -131,3 +131,10 @@ STATIC_URL = '/static/'
 #acessar uma página que exige login (anotação @login_required) e não estiver 
 #logado
 LOGIN_URL = '/users/login/'
+
+# Configurações para o django-bootstrap3
+BOOTSTRAP3 = {
+    # Inclusão da biblioteca JavaScript jQuery para poder usar alguns elementos
+    #oferecidos pelos templates do Bootstrap
+    'include_jquery': True,
+}
