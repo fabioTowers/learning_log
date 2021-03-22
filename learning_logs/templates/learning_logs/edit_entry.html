@@ -3,17 +3,22 @@
     <!--Título da página-->
     {% block titulo %}Editar entrada{% endblock titulo %}
 
+    {% load bootstrap3 %}
+
+    {% block header %}
+        <h2>Editar entrada (<a href="{% url 'learning_logs:topic' topic.id %}">{{ topic }}</a>)</h2>
+    {% endblock header %}
+
     {% block content %}
 
-        <p><a href="{% url 'learning_logs:topic' topic.id %}">{{ topic }}</a></p>
-
-        <p>Editar entrada:</p>
-
         <!--action envia o formulário de volta a função edit_entry(), enviamos o id tbm-->
-        <form action="{% url 'learning_logs:edit_entry' entry.id %}" method="post">
+        <form action="{% url 'learning_logs:edit_entry' entry.id %}" method="post" class="form">
             {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">Salvar alterações</button>
+            {% bootstrap_form form %}
+
+            {% buttons %}
+                <button type="submit" class="btn btn-primary">Salvar alterações</button>
+            {% endbuttons %}
         </form>
 
     {% endblock content %}
