@@ -1,19 +1,25 @@
 {% extends "learning_logs/base.html" %}
     {% block titulo %}Novo Assunto{% endblock titulo %}
 
+    {% load bootstrap3 %}
+
+    {% block header %}
+        <h2>Adicionar um novo tópico:</h2>
+    {% endblock header %}
+
     {% block content %}
-        <p>Adicionar um novo tópico</p>
 
         <!--Action diz ao django para enviar os dados para a função new_topic() que foi
         definida em view.py a requisição deve ser feita como POST-->
-        <form action="{% url 'learning_logs:new_topic' %}" method="post">
+        <form action="{% url 'learning_logs:new_topic' %}" method="post" class="form">
             <!--Tag de template: evita que invasores usem o formulário para ter acesso
             não autorizado ao servidor (ataques cross-site request forgery)-->
             {% csrf_token %}
-            <!--Basta incluir essa variável template que os campos necessários são exibidos
-            as_p diz ao django para renderizar os elemento no formato parágrafo (por uma 
-            questão de organização)-->
-            {{ form.as_p }}
-            <button name="submit">Adicionar tópico</button>
+            <!---->
+            {% bootstrap_form form %}
+
+            {% buttons %}
+                <button name="submit" class="btn btn-primary">Adicionar tópico</button>
+            {% endbuttons %}
         </form>
     {% endblock content %}
