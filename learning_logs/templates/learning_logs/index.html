@@ -4,9 +4,21 @@
     o conteúdo do tamplate pai-->
     {% extends "learning_logs/base.html" %}
     {% block titulo %}Home{% endblock titulo %}
+
+        <!--Jumbotron é uma classe que adiciona uma janela grande descrevendo brevemente as funcionalidades do site-->
+        {% block header %}
+            <div class="jumbotron">
+                <h1>Registre seu aprendizado.</h1>
+            </div>
+        {% endblock header %}
+
         <!--Tudo que não é herdado de um template pai fica 
         dentro de um bloco content-->
         {% block content %}
-            <h1>Seja bem-vindo ao Learning Logs!</h1>
-            <p>Learning Logs te ajuda a manter uma trilha de aprendizagem, para qualquer tópico que você esteja aprendendo.</p>
+            <h2>
+                <a href="{% url 'users:register' %}">Crie uma conta</a> para criar sua própria trilha de aprendizado e listar os tópicos que está estudando.
+            </h2>
+            <h2>
+                Sempre que aprender algo novo sobre determinado assunto, adicione no tópico correspondente uma nova entrada descrevendo em poucas palavras o que foi aprendido.
+            </h2>
         {% endblock content %}
