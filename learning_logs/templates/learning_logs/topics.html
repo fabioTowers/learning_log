@@ -1,7 +1,11 @@
 {% extends "learning_logs/base.html" %}
 {% block titulo %}Tópicos{% endblock titulo %}
+
+    {% block header %}
+        <h1>Tópicos</h1>
+    {% endblock header %}
+
     {% block content %}
-        <p>Tópicos:</p>
         <ul>
     <!--Tag que equivale ao laço for, percorre as linhas de 
     context. Varre cada topico (topic) na lista de 
@@ -13,7 +17,9 @@ Há ainda a tag empty para dizer ao django o que fazer se não
 houver nada na variável-->
             {% for topic in topics %}
                 <li>
-                    <a href="{% url 'learning_logs:topic' topic.id %}">{{ topic }}</a>
+                    <h3>
+                        <a href="{% url 'learning_logs:topic' topic.id %}">{{ topic }}</a>
+                    </h3>
                 </li>
             {% empty %}
                 <li>Ainda não foi adicionado nenhum tópico...</li>
@@ -22,5 +28,5 @@ houver nada na variável-->
 
         <hr>
         <!--Link para a página de inserção de novo tópico-->
-        <a href="{% url 'learning_logs:new_topic' %}">Adicionar um novo tópico</a>
+        <h3><a href="{% url 'learning_logs:new_topic' %}">Adicionar um novo tópico</a></h3>
     {% endblock content %}
