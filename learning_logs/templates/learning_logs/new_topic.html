@@ -15,7 +15,7 @@
             <!--Tag de template: evita que invasores usem o formulário para ter acesso
             não autorizado ao servidor (ataques cross-site request forgery)-->
             {% csrf_token %}
-            <!---->
+            <!--Template de formulário do bootstrap3 - substitui {{form.as_p}}-->
             {% bootstrap_form form %}
 
             {% buttons %}

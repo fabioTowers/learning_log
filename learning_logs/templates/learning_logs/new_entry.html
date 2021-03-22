@@ -2,16 +2,23 @@
     <!--Título da página-->
     {% block titulo %}Adicionar em {{ topic }}{% endblock titulo %}
 
-    {%block content %}
+    {% load bootstrap3 %}
+
+    {% block header %}
         <!--Mostra a qual assunto se está adicionando a nova entrada,
         tembém é um link para redirecionar para esse assunto-->
-        <p><a href="{% url 'learning_logs:topic' topic.id %}">{{ topic }}</a></p>
+        <h2>Adicionar nova entrada em <a href="{% url 'learning_logs:topic' topic.id %}">{{ topic }}</a></h2>
+    {% endblock header %}
 
-        <p>Adicionar nova entrada:</p>
+    {%block content %}
+
         <!--Em action temos o id do tópico, para ao enviar, associar ao tópico correto-->
-        <form action="{% url 'learning_logs:new_entry' topic.id %}" method="post">
+        <form action="{% url 'learning_logs:new_entry' topic.id %}" method="post" class="form">
             {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">Adicionar Entrada</button>
+            {% bootstrap_form form %}
+
+            {% buttons %}
+                <button type="submit" class="btn btn-primary">Adicionar Entrada</button>
+            {% endbuttons %}
         </form>
     {% endblock content %}
