@@ -1,16 +1,22 @@
 {% extends 'learning_logs/base.html' %}
     {% block titulo %}Registrar{% endblock titulo %}
 
+    {% load bootstrap3 %}
+
+    {% block header %}
+        <h2>Registre-se</h2>
+    {% endblock header %}
+
     {% block content %}
 
-        <form action="" method="post">
+        <form action="{% url 'users:register' %}" method="post">
             {% csrf_token %}
-            <!--o método as_p() serve para que o django exiba todos os campos do 
-            formulário de forma adequada, incluido mensagens de erro no caso de 
-            preenchimento incorreto-->
-            {{ form.as_p }}
+            <!--Template de formulário do bootstrap3 - substitui {{form.as_p}}-->
+            {% bootstrap_form form %}
 
-            <button type="submit">Registrar</button>
+            {% buttons %}
+                <button type="submit" class="btn btn-primary">Registrar</button>
+            {% endbuttons %}
             <input type="hidden" name="next" value="{% url 'learning_logs:index' %}"/>
         </form>
 
