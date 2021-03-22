@@ -1,31 +1,38 @@
 {% extends 'learning_logs/base.html' %}
 {% block titulo %}{{ topic }}{% endblock titulo %}
 
+{% block header %}
+    <h2>Tópico: {{ topic }}</h2>
+{% endblock header %}
+
 {% block content %}
-    <p>Tópico: {{ topic }}</p>
-    <p>Entradas:</p>
     <p>
         <!--Link que redireciona para a página de adicionar um novo tópico-->
-        <a href="{% url 'learning_logs:new_entry' topic.id %}">Adicionar novo tópico</a>
+        <a href="{% url 'learning_logs:new_entry' topic.id %}">Adicionar uma nova entrada</a>
     </p>
-    <ul>
         {% for entry in entries %}
-            <li>
-                <!--No Django, o pipe significa uma um filtro de template:
-                uma função que modifica o valor da variável do template, isso 
-            é usado abaixo para determinar o formato que o timestamp vai aparecer e
-            o filtro linebreaks garante que será usada uma quebra de linha que seja 
-            compatível com as usadas em navegadores-->
-                <p>{{ entry.date_added | date:'M d, Y H:i' }}</p>
-                <p>{{ entry.text | linebreaks }}</p>
-                <p>
-                    <a href="{% url 'learning_logs:edit_entry' entry.id %}">Editar entrada</a>
-                </p>
-            </li>
-            {% empty %}
-            <li>
-                Ainda não há nada aqui...
-            </li>
-            {% endfor %}
-    </ul>
+            <!--Para cada item que for iterado no laço for será criada uma div panel, que possui 
+            duas divs aninhadas: panel-heading (titulo) e panel-body (conteúdo)-->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3>
+                        <!--No Django, o pipe significa uma um filtro de template:
+                        uma função que modifica o valor da variável do template, isso 
+                        é usado abaixo para determinar o formato que o timestamp vai aparecer e
+                        o filtro linebreaks garante que será usada uma quebra de linha que seja 
+                        compatível com as usadas em navegadores-->
+                        {{ entry.date_added | date:'M d, Y H:i' }}
+                        <!--Small deixa o conteúdo dentro da tag menor-->
+                        <small>
+                            <a href="{% url 'learning_logs:edit_entry' entry.id %}">Editar entrada</a>
+                        </small>
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    {{ entry.text | linebreaks }}
+                </div>
+            </div>
+        {% empty %}
+            Ainda não há nada aqui...
+        {% endfor %}
 {% endblock content %}
