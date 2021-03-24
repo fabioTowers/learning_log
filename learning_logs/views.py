@@ -7,6 +7,8 @@ from .models import Topic, Entry
 #após ele ter submentido um assunto
 from django.http import HttpResponseRedirect, Http404
 
+from django.shortcuts import render, get_object_or_404
+
 # A função reverse() determina o URL a partir de um padrão de URL
 #nomeado. O django vai gerar um URL quando a págin for solicitada
 #from django.core.urlresolvers import reverse
@@ -54,7 +56,8 @@ def topic(request, topic_id):
     """Mostra um único assunto e todas as suas entradas."""
     
     #Obtendo o assunto do banco de dados (registro onde o id corresponde)
-    topic = Topic.objects.get(id=topic_id)
+    # se nada for obtido retorna 404
+    topic = get_object_or_404(Topic, id=topic_id)
 
     # Garante que o assunto pertence ao usuário atual
     if topic.owner != request.user:
