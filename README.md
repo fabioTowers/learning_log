@@ -2,6 +2,8 @@
 
 Plataforma online que te ajuda a manter uma trilha de aprendizado para qualquer tópico que você esteja estudando!
 
+[Clique aqui para ver o deploy no Heroku](https://trilhadeaprendizado.herokuapp.com/).
+
 Essa plataforma funciona como um **diário online**, o usuário pode entrar na sua conta e criar um tópico, por exemplo, para um livro que esteja lendo, e nesse tópico pode ir registrando sub tópicos com frases inspiradoras, ou curiosidades que aprendeu, que ficam registrados com a data de criação, e mais tarde podem ser alterados caso o usuário queira.
 
 Cada usuário pode criar diversos tópicos para os mais diversos assuntos.
